@@ -6,53 +6,33 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode_15.2.app || sudo xcode-select -s /Applications/Xcode.app; xcodebuild -version
+        run: sudo xcode-select -s /Applications/Xcode.app; xcodebuild -version
       - name: List files
-        run: ls -R
-      - name: Build
+        run: ls -R; echo "---"; find . -name "*.xcodeproj" -o -name "*.xcworkspace" | head -20
+      - name: Build Real App
         run: |
+          set -e
           mkdir -p build/Payload
-          if ls *.xcodeproj 2>/dev/null || ls */*.xcodeproj 2>/dev/null; then
-            PROJ=$(find . -maxdepth 3 -name "*.xcodeproj" | head -n1)
-            echo "Found $PROJ"
-            xcodebuild -project "$PROJ" -scheme Xattot -sdk iphoneos -configuration Release CODE_SIGNING_ALLOWED=NO -derivedDataPath build/DerivedData || echo "build failed, continuing"
-            APP=$(find build/DerivedData -name "*.app" | head -n1)
-            if [ -n "$APP" ]; then cp -r "$APP" build/Payload/; fi
-          fi
-          if [ ! -d build/Payload/*.app ]; then
-            mkdir -p build/Payload/Xattot.app
-            printf '#!/bin/sh\nexec /usr/bin/true\n' > build/Payload/Xattot.app/Xattot
-            chmod +x build/Payload/Xattot.app/Xattot
-            cat > build/Payload/Xattot.app/Info.plist <<'PLIST'
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
-          <dict>
-            <key>CFBundleName</key><string>Xattot</string>
-            <key>CFBundleDisplayName</key><string>Xattot</string>
-            <key>CFBundleIdentifier</key><string>com.ihojaka.xattot</string>
-            <key>CFBundleVersion</key><string>1.0</string>
-            <key>CFBundleShortVersionString</key><string>1.0</string>
-            <key>CFBundleExecutable</key><string>Xattot</string>
-            <key>CFBundlePackageType</key><string>APPL</string>
-            <key>CFBundleSignature</key><string>????</string>
-            <key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
-            <key>MinimumOSVersion</key><string>15.0</string>
-            <key>UIDeviceFamily</key><array><integer>1</integer><integer>2</integer></array>
-            <key>UISupportedInterfaceOrientations</key><array><string>UIInterfaceOrientationPortrait</string></array>
-            <key>LSRequiresIPhoneOS</key><true/>
-          </dict>
-          </plist>
-          PLIST
-          fi
-          APP_DIR=$(ls -d build/Payload/*.app | head -n1)
-          EXE=$(/usr/libexec/PlistBuddy -c "Print CFBundleExecutable" "$APP_DIR/Info.plist" 2>/dev/null || echo "Xattot")
-          if [ ! -f "$APP_DIR/$EXE" ]; then printf '#!/bin/sh\nexec /usr/bin/true\n' > "$APP_DIR/$EXE"; fi
-          chmod +x "$APP_DIR/$EXE"
-          /usr/libexec/PlistBuddy -c "Print CFBundleExecutable" "$APP_DIR/Info.plist" || echo "MISSING CFBundleExecutable!"
-          ls -lR build/Payload
+          PROJ=$(find . -maxdepth 3 -name "*.xcodeproj" | head -n1)
+          echo "Project: $PROJ"
+          # List schemes
+          xcodebuild -list -project "$PROJ" || true
+          # Build - do NOT create fake placeholder, real binary is required for Sideloadly
+          xcodebuild -project "$PROJ" -scheme Xattot -sdk iphoneos -configuration Release CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO -derivedDataPath build/DerivedData
+          APP=$(find build/DerivedData -name "Xattot.app" | head -n1)
+          echo "App found: $APP"
+          if [ -z "$APP" ]; then echo "ERROR: No Xattot.app built"; find build -type f | head -n 100; exit 1; fi
+          # Check executable is real Mach-O, not shell script
+          EXEC=$(/usr/libexec/PlistBuddy -c "Print :CFBundleExecutable" "$APP/Info.plist")
+          echo "Executable: $EXEC"
+          file "$APP/$EXEC"
+          ls -lh "$APP/"
+          # If PlugIns exists (keyboard extension), show it
+          ls -R "$APP/PlugIns" || true
+          cp -r "$APP" build/Payload/
           cd build && zip -r ../Xattot.ipa Payload
           ls -lh ../Xattot.ipa
+          unzip -l ../Xattot.ipa
       - name: Upload IPA
         uses: actions/upload-artifact@v4
         with:
