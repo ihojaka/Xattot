@@ -46,6 +46,15 @@ jobs:
             chmod +x "$EXT/$EEXE" || true
           done
           cp -r "$APP" build/Payload/
+                    # Add icon - Xattot gold icon
+          APP_DIR=$(ls -d build/Payload/*.app | head -n1)
+          if [ -f "Xattot/Assets.xcassets/AppIcon.appiconset/Icon.png" ]; then
+            cp "Xattot/Assets.xcassets/AppIcon.appiconset/Icon.png" "$APP_DIR/Icon.png"
+            /usr/libexec/PlistBuddy -c "Add :CFBundleIconFile string Icon.png" "$APP_DIR/Info.plist" || /usr/libexec/PlistBuddy -c "Set :CFBundleIconFile string Icon.png" "$APP_DIR/Info.plist" || true
+            echo "Icon added"
+          else
+            echo "Icon not found"
+          fi
           ls -R build/Payload
           cd build && zip -r ../Xattot.ipa Payload
           ls -lh ../Xattot.ipa
