@@ -5,14 +5,15 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode_15.2.app || sudo xcode-select -s /Applications/Xcode.app; xcodebuild -version
-      - name: Build
+      - name: Build IPA
         run: |
+          xcodebuild -project Xattot.xcodeproj -scheme Xattot -sdk iphoneos -configuration Release CODE_SIGNING_ALLOWED=NO -derivedDataPath build/DerivedData
+          APP=$(find build/DerivedData -name "Xattot.app" | head -n1)
+          echo "APP=$APP"
           mkdir -p build/Payload
-          mkdir -p build/Payload/Xattot.app
-          echo "Xattot" > build/Payload/Xattot.app/Xattot
+          cp -r "$APP" build/Payload/
           cd build && zip -r ../Xattot.ipa Payload
+          ls -lh ../Xattot.ipa
       - name: Upload IPA
         uses: actions/upload-artifact@v4
         with:
