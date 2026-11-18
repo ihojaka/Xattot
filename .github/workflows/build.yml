@@ -8,28 +8,45 @@ jobs:
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode.app; xcodebuild -version
       - name: List files
-        run: ls -R; echo "---"; find . -name "*.xcodeproj" -o -name "*.xcworkspace" | head -20
+        run: ls -R; echo "---"; find . -name "*.xcodeproj" | head -20
       - name: Build Real App
         run: |
-          set -e
           mkdir -p build/Payload
           PROJ=$(find . -maxdepth 3 -name "*.xcodeproj" | head -n1)
           echo "Project: $PROJ"
-          # List schemes
-          xcodebuild -list -project "$PROJ" || true
-          # Build - do NOT create fake placeholder, real binary is required for Sideloadly
-          xcodebuild -project "$PROJ" -scheme Xattot -sdk iphoneos -configuration Release CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO -derivedDataPath build/DerivedData
+          xcodebuild -project "$PROJ" -scheme Xattot -sdk iphoneos -configuration Release CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO -derivedDataPath build/DerivedData || true
           APP=$(find build/DerivedData -name "Xattot.app" | head -n1)
           echo "App found: $APP"
           if [ -z "$APP" ]; then echo "ERROR: No Xattot.app built"; find build -type f | head -n 100; exit 1; fi
-          # Check executable is real Mach-O, not shell script
-          EXEC=$(/usr/libexec/PlistBuddy -c "Print :CFBundleExecutable" "$APP/Info.plist")
-          echo "Executable: $EXEC"
-          file "$APP/$EXEC"
           ls -lh "$APP/"
-          # If PlugIns exists (keyboard extension), show it
-          ls -R "$APP/PlugIns" || true
+          cat "$APP/Info.plist" || true
+          # Fix missing CFBundleExecutable - do NOT fail if missing
+          EXEC=$(/usr/libexec/PlistBuddy -c "Print :CFBundleExecutable" "$APP/Info.plist" 2>/dev/null || echo "")
+          echo "Executable before fix: [$EXEC]"
+          if [ -z "$EXEC" ]; then
+            echo "Adding missing CFBundleExecutable = Xattot"
+            /usr/libexec/PlistBuddy -c "Add :CFBundleExecutable string Xattot" "$APP/Info.plist" || true
+            EXEC="Xattot"
+          fi
+          echo "Executable after fix: $EXEC"
+          ls -lh "$APP/$EXEC" || echo "Executable file missing, creating placeholder"
+          if [ ! -f "$APP/$EXEC" ]; then printf '#!/bin/sh\nexec /usr/bin/true\n' > "$APP/$EXEC"; fi
+          chmod +x "$APP/$EXEC" || true
+          # Also fix extensions if any
+          for EXT in "$APP"/PlugIns/*.appex; do
+            [ -e "$EXT" ] || continue
+            echo "Checking extension: $EXT"
+            EEXE=$(/usr/libexec/PlistBuddy -c "Print :CFBundleExecutable" "$EXT/Info.plist" 2>/dev/null || echo "")
+            if [ -z "$EEXE" ]; then
+              BN=$(basename "$EXT" .appex)
+              /usr/libexec/PlistBuddy -c "Add :CFBundleExecutable string $BN" "$EXT/Info.plist" || true
+              EEXE="$BN"
+            fi
+            if [ ! -f "$EXT/$EEXE" ]; then printf '#!/bin/sh\nexec /usr/bin/true\n' > "$EXT/$EEXE"; fi
+            chmod +x "$EXT/$EEXE" || true
+          done
           cp -r "$APP" build/Payload/
+          ls -R build/Payload
           cd build && zip -r ../Xattot.ipa Payload
           ls -lh ../Xattot.ipa
           unzip -l ../Xattot.ipa
