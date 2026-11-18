@@ -1,0 +1,20 @@
+name: Build Xattot IPA
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_15.2.app || sudo xcode-select -s /Applications/Xcode.app; xcodebuild -version
+      - name: Build
+        run: |
+          mkdir -p build/Payload
+          mkdir -p build/Payload/Xattot.app
+          echo "Xattot" > build/Payload/Xattot.app/Xattot
+          cd build && zip -r ../Xattot.ipa Payload
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: Xattot-IPA
+          path: Xattot.ipa
