@@ -3,27 +3,352 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 56;
 	objects = {
-		AAA00000000000000000001 = {isa = PBXBuildFile; fileRef = AAA00000000000000000005; };
-		AAA00000000000000000002 = {isa = PBXBuildFile; fileRef = AAA00000000000000000006; };
-		AAA00000000000000000003 = {isa = PBXBuildFile; fileRef = AAA00000000000000000007; };
-		AAA00000000000000000004 = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xattot.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AAA00000000000000000005 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AAA00000000000000000006 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AAA00000000000000000007 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
-		AAA00000000000000000008 = {isa = PBXGroup; children = (AAA00000000000000000009, AAA0000000000000000000A, AAA00000000000000000004); sourceTree = "<group>"; };
-		AAA00000000000000000009 = {isa = PBXGroup; children = (AAA00000000000000000005, AAA00000000000000000006); path = Xattot; sourceTree = "<group>"; };
-		AAA0000000000000000000A = {isa = PBXGroup; children = (AAA00000000000000000007); path = XattotKeyboard; sourceTree = "<group>"; };
-		AAA0000000000000000000B = {isa = PBXNativeTarget; buildConfigurationList = AAA0000000000000000000E; buildPhases = (AAA0000000000000000000C); buildRules = (); dependencies = (); name = Xattot; productName = Xattot; productReference = AAA00000000000000000004; productType = "com.apple.product-type.application"; };
-		AAA0000000000000000000C = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (AAA00000000000000000001, AAA00000000000000000002, AAA00000000000000000003); runOnlyForDeploymentPostprocessing = 0; };
-		AAA0000000000000000000D = {isa = PBXProject; attributes = {LastUpgradeCheck = 1240; TargetAttributes = {AAA0000000000000000000B = {CreatedOnToolsVersion = 12.4; }; }; }; buildConfigurationList = AAA0000000000000000000F; compatibilityVersion = "Xcode 9.3"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en); mainGroup = AAA00000000000000000008; productRefGroup = AAA00000000000000000008; projectDirPath = ""; projectRoot = ""; targets = (AAA0000000000000000000B); };
-		AAA0000000000000000000E = {isa = XCConfigurationList; buildConfigurations = (AAA00000000000000000010, AAA00000000000000000011); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
-		AAA0000000000000000000F = {isa = XCConfigurationList; buildConfigurations = (AAA00000000000000000012, AAA00000000000000000013); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
-		AAA00000000000000000010 = {isa = XCBuildConfiguration; buildSettings = {ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; CODE_SIGNING_ALLOWED = NO; CODE_SIGNING_REQUIRED = NO; INFOPLIST_FILE = Xattot/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 14.0; PRODUCT_BUNDLE_IDENTIFIER = com.ihojaka.xattot; PRODUCT_NAME = Xattot; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Debug; };
-		AAA00000000000000000011 = {isa = XCBuildConfiguration; buildSettings = {ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; CODE_SIGNING_ALLOWED = NO; CODE_SIGNING_REQUIRED = NO; INFOPLIST_FILE = Xattot/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 14.0; PRODUCT_BUNDLE_IDENTIFIER = com.ihojaka.xattot; PRODUCT_NAME = Xattot; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Release; };
-		AAA00000000000000000012 = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CODE_SIGNING_ALLOWED = NO; }; name = Debug; };
-		AAA00000000000000000013 = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CODE_SIGNING_ALLOWED = NO; }; name = Release; };
+
+/* Begin PBXBuildFile section */
+		AA00000000000000000001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000000000000000011 /* AppDelegate.swift */; };
+		AA00000000000000000002 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000000000000000012 /* ViewController.swift */; };
+		AA00000000000000000003 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000000000000000013 /* KeyboardViewController.swift */; };
+		AA00000000000000000004 /* XattotKeyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA00000000000000000014 /* XattotKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AA00000000000000000020 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA00000000000000000030 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA00000000000000000031;
+			remoteInfo = XattotKeyboard;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AA00000000000000000021 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				AA00000000000000000004 /* XattotKeyboard.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		AA00000000000000000010 /* Xattot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xattot.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA00000000000000000011 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AA00000000000000000012 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AA00000000000000000013 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		AA00000000000000000014 /* XattotKeyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = XattotKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA00000000000000000015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA00000000000000000016 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA00000000000000000022 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA00000000000000000023 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA00000000000000000040 /* Xattot */ = {
+			isa = PBXGroup;
+			children = (
+				AA00000000000000000011 /* AppDelegate.swift */,
+				AA00000000000000000012 /* ViewController.swift */,
+				AA00000000000000000015 /* Info.plist */,
+			);
+			path = Xattot;
+			sourceTree = "<group>";
+		};
+		AA00000000000000000041 /* XattotKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				AA00000000000000000013 /* KeyboardViewController.swift */,
+				AA00000000000000000016 /* Info.plist */,
+			);
+			path = XattotKeyboard;
+			sourceTree = "<group>";
+		};
+		AA00000000000000000042 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA00000000000000000010 /* Xattot.app */,
+				AA00000000000000000014 /* XattotKeyboard.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA00000000000000000043 = {
+			isa = PBXGroup;
+			children = (
+				AA00000000000000000040 /* Xattot */,
+				AA00000000000000000041 /* XattotKeyboard */,
+				AA00000000000000000042 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA00000000000000000031 /* XattotKeyboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA00000000000000000051 /* Build configuration list for PBXNativeTarget "XattotKeyboard" */;
+			buildPhases = (
+				AA00000000000000000023 /* Frameworks */,
+				AA00000000000000000025 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XattotKeyboard;
+			productName = XattotKeyboard;
+			productReference = AA00000000000000000014 /* XattotKeyboard.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		AA00000000000000000032 /* Xattot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA00000000000000000052 /* Build configuration list for PBXNativeTarget "Xattot" */;
+			buildPhases = (
+				AA00000000000000000022 /* Frameworks */,
+				AA00000000000000000024 /* Sources */,
+				AA00000000000000000021 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA00000000000000000026 /* PBXTargetDependency */,
+			);
+			name = Xattot;
+			productName = Xattot;
+			productReference = AA00000000000000000010 /* Xattot.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA00000000000000000030 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					AA00000000000000000031 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					AA00000000000000000032 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = AA00000000000000000050 /* Build configuration list for PBXProject "Xattot" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AA00000000000000000043;
+			productRefGroup = AA00000000000000000042 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA00000000000000000032 /* Xattot */,
+				AA00000000000000000031 /* XattotKeyboard */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA00000000000000000024 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA00000000000000000001 /* AppDelegate.swift in Sources */,
+				AA00000000000000000002 /* ViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA00000000000000000025 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA00000000000000000003 /* KeyboardViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AA00000000000000000026 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA00000000000000000031 /* XattotKeyboard */;
+			targetProxy = AA00000000000000000020 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		AA00000000000000000060 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_DYNAMIC_NO_PIC = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AA00000000000000000061 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AA00000000000000000062 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = XattotKeyboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ihojaka.xattot.XattotKeyboard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMBED_LIBRARIES_WITH_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AA00000000000000000063 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = XattotKeyboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ihojaka.xattot.XattotKeyboard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMBED_LIBRARIES_WITH_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AA00000000000000000064 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Xattot/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ihojaka.xattot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AA00000000000000000065 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Xattot/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ihojaka.xattot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA00000000000000000050 /* Build configuration list for PBXProject "Xattot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA00000000000000000060 /* Debug */,
+				AA00000000000000000061 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA00000000000000000051 /* Build configuration list for PBXNativeTarget "XattotKeyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA00000000000000000062 /* Debug */,
+				AA00000000000000000063 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA00000000000000000052 /* Build configuration list for PBXNativeTarget "Xattot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA00000000000000000064 /* Debug */,
+				AA00000000000000000065 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
 	};
-	rootObject = AAA0000000000000000000D;
+	rootObject = AA00000000000000000030 /* Project object */;
 }
