@@ -37,7 +37,7 @@
 				<string>uz-UZ</string>
 			</array>
 			<key>RequestsOpenAccess</key>
-			<false/>
+			<true/>
 		</dict>
 	</dict>
 </dict>
