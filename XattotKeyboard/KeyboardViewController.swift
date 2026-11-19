@@ -18,7 +18,7 @@ for (ri,row) in rows.enumerated() {
 var x: CGFloat = 4
 let cnt = ri==2 ? row.count+2 : row.count
 let w = (view.bounds.width-8)/CGFloat(cnt) - 4
-if ri==2 { let sb = UIButton(type:.system); sb.frame = CGRect(x:x,y:y,width:w,height:44); sb.setTitle("⇧",for:.normal);sb.backgroundColor = .white; sb.layer.cornerRadius = 5; sb.addTarget(self,action:#selector(shiftTap),for:.touchUpInside); view.addSubview(sb); x += w+4 }
+if ri==2 { let sb = UIButton(type:.system); sb.frame = CGRect(x:x,y:y,width:w,height:44); sb.setTitle("⇧",for:.normal);sb.setTitleColor(.black, for: .normal);sb.backgroundColor = .white; sb.layer.cornerRadius = 5; sb.addTarget(self,action:#selector(shiftTap),for:.touchUpInside); view.addSubview(sb); x += w+4 }
 for ch in row {
 let b = UIButton(type:.system); b.frame = CGRect(x:x,y:y,width:w,height:44); b.setTitle(shiftOn ? ch : ch.lowercased(), for:.normal); b.setTitleColor(.black, for:.normal); b.backgroundColor = .white; b.layer.cornerRadius = 5; b.titleLabel?.font = UIFont.systemFont(ofSize:18); b.addTarget(self, action:#selector(tap(_:)), for:.touchUpInside); view.addSubview(b)
 x += w + 4
@@ -31,7 +31,7 @@ let bottomY = y
 func bottomBtn(_ t:String, _ x:CGFloat, _ w:CGFloat, _ act:Selector){ let b=UIButton(type:.system); b.frame=CGRect(x:x,y:bottomY,width:w,height:48); b.setTitle(t, for:.normal); b.setTitleColor(.black, for:.normal); b.backgroundColor = .white; b.layer.cornerRadius = 5; b.titleLabel?.font = UIFont.boldSystemFont(ofSize:16); b.addTarget(self, action:act, for:.touchUpInside); view.addSubview(b) }
 bottomBtn(showNum ? "ABC" : "123",4,52,#selector(numTap))
 let langTitle = lang==0 ? "ЎЗ" : (lang==1 ? "ÖZ" : "اوز")
-bottomBtn("🌐 ",60,40,#selector(globeTap))
+bottomBtn("⌖",60,40,#selector(globeTap))
 bottomBtn("☺",104,40,#selector(emojiTap))
 let spaceW = view.bounds.width - 244
 let spaceLabel = " "
@@ -50,7 +50,7 @@ if lang==1 { autocorrectLatin2() }
 @objc func dotTap(){ textDocumentProxy.insertText(".") }
 @objc func retTap(){ textDocumentProxy.insertText("\n") }
 @objc func globeTap(){ lang = (lang+1)%3; build() }
-@objc func emojiTap(){ textDocumentProxy.insertText("😀") }
+@objc func emojiTap(){ textDocumentProxy.insertText("☺") }
   @objc func shiftTap(){ shiftOn.toggle(); build() }
 @objc func delTap(){ textDocumentProxy.deleteBackward() }
 @objc func numTap(){ showNum.toggle(); build() }
