@@ -12,13 +12,15 @@ view.subviews.forEach{$0.removeFromSuperview()}
 view.backgroundColor = UIColor(red:0.82,green:0.84,blue:0.87,alpha:1)
 var y: CGFloat = 6
 let rows = lang==0 ? rowsCyr : (lang==1 ? rowsLat : rowsAra)
-for row in rows {
+for (ri,row) in rows.enumerated() {
 var x: CGFloat = 4
-let w = (view.bounds.width-8)/CGFloat(row.count) - 4
+let cnt = ri==2 ? row.count+2 : row.count
+let w = (view.bounds.width-8)/CGFloat(cnt) - 4
+if ri==2 { let sb = UIButton(type:.system); sb.frame = CGRect(x:x,y:y,width:w,height:44); sb.setTitle("⇧",for:.normal); sb.addTarget(self,action:#selector(shiftTap),for:.touchUpInside); view.addSubview(sb); x += w+4 }
 for ch in row {
 let b = UIButton(type:.system); b.frame = CGRect(x:x,y:y,width:w,height:44); b.setTitle(shiftOn ? ch.uppercased() : ch, for:.normal); b.setTitleColor(.black, for:.normal); b.backgroundColor = .white; b.layer.cornerRadius = 5; b.titleLabel?.font = UIFont.systemFont(ofSize:18); b.addTarget(self, action:#selector(tap(_:)), for:.touchUpInside); view.addSubview(b)
 x += w + 4
-}
+}if ri==2 { let db = UIButton(type:.system); db.frame = CGRect(x:x,y:y,width:w,height:44); db.setTitle("⌫",for:.normal); db.setTitleColor(.black,for:.normal); db.backgroundColor = .white; db.layer.cornerRadius = 6; db.addTarget(self,action:#selector(delTap),for:.touchUpInside); view.addSubview(db) }
 y += 50
 }
 // bottom row: 123 | UZ | emoji | space | . | return
@@ -28,7 +30,7 @@ bottomBtn("123",4,52,#selector(numTap))
 let langTitle = lang==0 ? "ЎЗ" : (lang==1 ? "ÖZ" : "اوز")
 bottomBtn("🌐 ",60,72,#selector(globeTap))
 bottomBtn("☺",136,52,#selector(emojiTap))
-let spaceW = view.bounds.width - 300
+let spaceW = view.bounds.width - 220
 let spaceLabel = " "
 bottomBtn(spaceLabel,192,spaceW,#selector(spaceTap))
 bottomBtn(".",192+spaceW+4,48,#selector(dotTap))
@@ -45,6 +47,8 @@ if lang==1 { autocorrectLatin2() }
 @objc func retTap(){ textDocumentProxy.insertText("\n") }
 @objc func globeTap(){ lang = (lang+1)%3; build() }
 @objc func emojiTap(){ textDocumentProxy.insertText("😀") }
+  @objc func shiftTap(){ shiftOn.toggle(); build() }
+@objc func delTap(){ textDocumentProxy.deleteBackward() }
 @objc func numTap(){ textDocumentProxy.insertText("1") }
 func autocorrectLatin(_ t:String)->String{ return t }
 func autocorrectLatin2(){}
