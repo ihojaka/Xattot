@@ -18,7 +18,7 @@ for (ri,row) in rows.enumerated() {
 var x: CGFloat = 4
 let cnt = ri==2 ? row.count+2 : row.count
 let w = (view.bounds.width-8)/CGFloat(cnt) - 4
-if ri==2 { let sb = UIButton(type:.system); sb.frame = CGRect(x:x,y:y,width:w,height:44); sb.setTitle("⇧",for:.normal); sb.addTarget(self,action:#selector(shiftTap),for:.touchUpInside); view.addSubview(sb); x += w+4 }
+if ri==2 { let sb = UIButton(type:.system); sb.frame = CGRect(x:x,y:y,width:w,height:44); sb.setTitle("⇧",for:.normal);sb.backgroundColor = .white; sb.layer.cornerRadius = 5; sb.addTarget(self,action:#selector(shiftTap),for:.touchUpInside); view.addSubview(sb); x += w+4 }
 for ch in row {
 let b = UIButton(type:.system); b.frame = CGRect(x:x,y:y,width:w,height:44); b.setTitle(shiftOn ? ch : ch.lowercased(), for:.normal); b.setTitleColor(.black, for:.normal); b.backgroundColor = .white; b.layer.cornerRadius = 5; b.titleLabel?.font = UIFont.systemFont(ofSize:18); b.addTarget(self, action:#selector(tap(_:)), for:.touchUpInside); view.addSubview(b)
 x += w + 4
