@@ -28,7 +28,7 @@ let langTitle = lang==0 ? "ЎЗ" : (lang==1 ? "ÖZ" : "اوز")
 bottomBtn("🌐 "+langTitle,60,72,#selector(globeTap))
 bottomBtn("😀",136,52,#selector(emojiTap))
 let spaceW = view.bounds.width - 192 - 52 - 52 - 20
-let spaceLabel = lang==0 ? "ЎЗ" : (lang==1 ? "ÖZ" : "اوز")
+let spaceLabel = " "
 bottomBtn(spaceLabel,192,spaceW,#selector(spaceTap))
 bottomBtn(".",192+spaceW+4,48,#selector(dotTap))
 bottomBtn("⏎",192+spaceW+56,48,#selector(retTap))
