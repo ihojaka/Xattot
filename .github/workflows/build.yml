@@ -57,7 +57,7 @@ jobs:
           fi
                 # Fix name to Cyrillic Хаттот
                 /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName Хаттот" "$APP_DIR/Info.plist" || true
-        /usr/libexec/PlistBuddy -c "Set :CFBundleName Хаттот" "$APP_DIR/Info.plist" || true
+           /usr/libexec/PlistBuddy -c "Set :CFBundleName Хаттот" "$APP_DIR/Info.plist" || true
         for EXT in "$APP_DIR"/PlugIns/*.appex; do
           [ -e "$EXT" ] || continue
           /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName Хаттот" "$EXT/Info.plist" || true
