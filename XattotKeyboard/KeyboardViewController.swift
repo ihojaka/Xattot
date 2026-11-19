@@ -18,7 +18,7 @@ let cnt = ri==2 ? row.count+2 : row.count
 let w = (view.bounds.width-8)/CGFloat(cnt) - 4
 if ri==2 { let sb = UIButton(type:.system); sb.frame = CGRect(x:x,y:y,width:w,height:44); sb.setTitle("⇧",for:.normal); sb.addTarget(self,action:#selector(shiftTap),for:.touchUpInside); view.addSubview(sb); x += w+4 }
 for ch in row {
-let b = UIButton(type:.system); b.frame = CGRect(x:x,y:y,width:w,height:44); b.setTitle(shiftOn ? ch.uppercased() : ch, for:.normal); b.setTitleColor(.black, for:.normal); b.backgroundColor = .white; b.layer.cornerRadius = 5; b.titleLabel?.font = UIFont.systemFont(ofSize:18); b.addTarget(self, action:#selector(tap(_:)), for:.touchUpInside); view.addSubview(b)
+let b = UIButton(type:.system); b.frame = CGRect(x:x,y:y,width:w,height:44); b.setTitle(shiftOn ? ch : ch.lowercased(), for:.normal); b.setTitleColor(.black, for:.normal); b.backgroundColor = .white; b.layer.cornerRadius = 5; b.titleLabel?.font = UIFont.systemFont(ofSize:18); b.addTarget(self, action:#selector(tap(_:)), for:.touchUpInside); view.addSubview(b)
 x += w + 4
 }
   if ri==2 { let db = UIButton(type:.system); db.frame = CGRect(x:x,y:y,width:w,height:44); db.setTitle("⌫",for:.normal); db.setTitleColor(.black,for:.normal); db.backgroundColor = .white; db.layer.cornerRadius = 6; db.addTarget(self,action:#selector(delTap),for:.touchUpInside); view.addSubview(db) }
@@ -29,13 +29,13 @@ let bottomY = y
 func bottomBtn(_ t:String, _ x:CGFloat, _ w:CGFloat, _ act:Selector){ let b=UIButton(type:.system); b.frame=CGRect(x:x,y:bottomY,width:w,height:48); b.setTitle(t, for:.normal); b.setTitleColor(.black, for:.normal); b.backgroundColor = .white; b.layer.cornerRadius = 5; b.titleLabel?.font = UIFont.boldSystemFont(ofSize:16); b.addTarget(self, action:act, for:.touchUpInside); view.addSubview(b) }
 bottomBtn("123",4,52,#selector(numTap))
 let langTitle = lang==0 ? "ЎЗ" : (lang==1 ? "ÖZ" : "اوز")
-bottomBtn("🌐 ",60,72,#selector(globeTap))
-bottomBtn("☺",136,52,#selector(emojiTap))
-let spaceW = view.bounds.width - 220
+bottomBtn("🌐 ",60,40,#selector(globeTap))
+bottomBtn("☺",104,40,#selector(emojiTap))
+let spaceW = view.bounds.width - 244
 let spaceLabel = " "
-bottomBtn(spaceLabel,192,spaceW,#selector(spaceTap))
-bottomBtn(".",192+spaceW+4,48,#selector(dotTap))
-bottomBtn("⏎",192+spaceW+56,48,#selector(retTap))
+bottomBtn(spaceLabel,148,spaceW,#selector(spaceTap))
+bottomBtn(".",148+spaceW+4,36,#selector(dotTap))
+bottomBtn("⏎",148+spaceW+44,48,#selector(retTap))
 }
 // long-press mapping handled in tap via autocorrect below
 @objc func tap(_ s:UIButton){ var t = s.currentTitle ?? ""
