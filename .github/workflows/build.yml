@@ -55,14 +55,14 @@ jobs:
           else
             echo "Icon not found"
           fi
-          # Fix name to Cyrillic Хаттот
-/usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName Хаттот" "$APP_DIR/Info.plist" || true
-/usr/libexec/PlistBuddy -c "Set :CFBundleName Хаттот" "$APP_DIR/Info.plist" || true
-for EXT in "$APP_DIR"/PlugIns/*.appex; do
-  [ -e "$EXT" ] || continue
-  /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName Хаттот" "$EXT/Info.plist" || true
-  /usr/libexec/PlistBuddy -c "Set :CFBundleName Хаттот" "$EXT/Info.plist" || true
-done
+            # Fix name to Cyrillic Хаттот
+  /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName Хаттот" "$APP_DIR/Info.plist" || true
+  /usr/libexec/PlistBuddy -c "Set :CFBundleName Хаттот" "$APP_DIR/Info.plist" || true
+  for EXT in "$APP_DIR"/PlugIns/*.appex; do
+    [ -e "$EXT" ] || continue
+    /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName Хаттот" "$EXT/Info.plist" || true
+    /usr/libexec/PlistBuddy -c "Set :CFBundleName Хаттот" "$EXT/Info.plist" || true
+  done
           ls -R build/Payload
           cd build && zip -r ../Xattot.ipa Payload
           ls -lh ../Xattot.ipa
