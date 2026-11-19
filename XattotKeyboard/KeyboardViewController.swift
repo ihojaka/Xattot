@@ -20,7 +20,8 @@ if ri==2 { let sb = UIButton(type:.system); sb.frame = CGRect(x:x,y:y,width:w,he
 for ch in row {
 let b = UIButton(type:.system); b.frame = CGRect(x:x,y:y,width:w,height:44); b.setTitle(shiftOn ? ch.uppercased() : ch, for:.normal); b.setTitleColor(.black, for:.normal); b.backgroundColor = .white; b.layer.cornerRadius = 5; b.titleLabel?.font = UIFont.systemFont(ofSize:18); b.addTarget(self, action:#selector(tap(_:)), for:.touchUpInside); view.addSubview(b)
 x += w + 4
-}if ri==2 { let db = UIButton(type:.system); db.frame = CGRect(x:x,y:y,width:w,height:44); db.setTitle("⌫",for:.normal); db.setTitleColor(.black,for:.normal); db.backgroundColor = .white; db.layer.cornerRadius = 6; db.addTarget(self,action:#selector(delTap),for:.touchUpInside); view.addSubview(db) }
+}
+  if ri==2 { let db = UIButton(type:.system); db.frame = CGRect(x:x,y:y,width:w,height:44); db.setTitle("⌫",for:.normal); db.setTitleColor(.black,for:.normal); db.backgroundColor = .white; db.layer.cornerRadius = 6; db.addTarget(self,action:#selector(delTap),for:.touchUpInside); view.addSubview(db) }
 y += 50
 }
 // bottom row: 123 | UZ | emoji | space | . | return
