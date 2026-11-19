@@ -5,7 +5,8 @@ let rowsCyr = [["Й","Ц","У","К","Е","Н","Г","Ш","Щ","З","Х"],["Ф","�
 let rowsLat = [["Q","W","E","R","T","Y","U","I","O","P"],["A","S","D","F","G","H","J","K","L"],["Z","X","C","V","B","N","M"]]
 let rowsAra = [["ض","ص","ث","ق","ف","غ","ع","ه","خ","ح","ج"],["ش","س","ي","ب","ل","ا","ت","ن","م","ك"],["ظ","ط","ذ","د","ز","ر","و","ة","ى","ء"]]
 var shiftOn = false
-override func viewDidLoad(){ super.viewDidLoad(); build() }
+override func viewDidLoad(){ super.viewDidLoad() }
+override func viewDidLayoutSubviews(){ super.viewDidLayoutSubviews(); if view.bounds.width > 0 { build() } }
 func build(){
 view.subviews.forEach{$0.removeFromSuperview()}
 view.backgroundColor = UIColor(red:0.82,green:0.84,blue:0.87,alpha:1)
