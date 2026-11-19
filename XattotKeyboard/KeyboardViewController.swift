@@ -16,19 +16,19 @@ for row in rows {
 var x: CGFloat = 4
 let w = (view.bounds.width-8)/CGFloat(row.count) - 4
 for ch in row {
-let b = UIButton(type:.system); b.frame = CGRect(x:x,y:y,width:w,height:44); b.setTitle(shiftOn ? ch.uppercased() : ch, for:.normal); b.backgroundColor = .white; b.layer.cornerRadius = 5; b.titleLabel?.font = UIFont.systemFont(ofSize:18); b.addTarget(self, action:#selector(tap(_:)), for:.touchUpInside); view.addSubview(b)
+let b = UIButton(type:.system); b.frame = CGRect(x:x,y:y,width:w,height:44); b.setTitle(shiftOn ? ch.uppercased() : ch, for:.normal); b.setTitleColor(.black, for:.normal); b.backgroundColor = .white; b.layer.cornerRadius = 5; b.titleLabel?.font = UIFont.systemFont(ofSize:18); b.addTarget(self, action:#selector(tap(_:)), for:.touchUpInside); view.addSubview(b)
 x += w + 4
 }
 y += 50
 }
 // bottom row: 123 | UZ | emoji | space | . | return
 let bottomY = y
-func bottomBtn(_ t:String, _ x:CGFloat, _ w:CGFloat, _ act:Selector){ let b=UIButton(type:.system); b.frame=CGRect(x:x,y:bottomY,width:w,height:48); b.setTitle(t, for:.normal); b.backgroundColor = .white; b.layer.cornerRadius = 5; b.titleLabel?.font = UIFont.boldSystemFont(ofSize:16); b.addTarget(self, action:act, for:.touchUpInside); view.addSubview(b) }
+func bottomBtn(_ t:String, _ x:CGFloat, _ w:CGFloat, _ act:Selector){ let b=UIButton(type:.system); b.frame=CGRect(x:x,y:bottomY,width:w,height:48); b.setTitle(t, for:.normal); b.setTitleColor(.black, for:.normal); b.backgroundColor = .white; b.layer.cornerRadius = 5; b.titleLabel?.font = UIFont.boldSystemFont(ofSize:16); b.addTarget(self, action:act, for:.touchUpInside); view.addSubview(b) }
 bottomBtn("123",4,52,#selector(numTap))
 let langTitle = lang==0 ? "ЎЗ" : (lang==1 ? "ÖZ" : "اوز")
-bottomBtn("🌐 "+langTitle,60,72,#selector(globeTap))
-bottomBtn("😀",136,52,#selector(emojiTap))
-let spaceW = view.bounds.width - 192 - 52 - 52 - 20
+bottomBtn("🌐 ",60,72,#selector(globeTap))
+bottomBtn("☺",136,52,#selector(emojiTap))
+let spaceW = view.bounds.width - 300
 let spaceLabel = " "
 bottomBtn(spaceLabel,192,spaceW,#selector(spaceTap))
 bottomBtn(".",192+spaceW+4,48,#selector(dotTap))
