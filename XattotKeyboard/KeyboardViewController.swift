@@ -41,6 +41,7 @@ bottomBtn("⏎",148+spaceW+44,48,#selector(retTap))
 @objc func tap(_ s:UIButton){ var t = s.currentTitle ?? ""
 if lang==1 { t = autocorrectLatin(t) }
 textDocumentProxy.insertText(t)
+                           if shiftOn { shiftOn = false; build() }  
 if lang==1 { autocorrectLatin2() }
 }
 @objc func spaceTap(){ textDocumentProxy.insertText(" ") }
