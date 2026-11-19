@@ -27,7 +27,7 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.keyboard-service</string>
 		<key>NSExtensionPrincipalClass</key>
-		<string>KeyboardViewController</string>
+		<string>XattotKeyboard.KeyboardViewController</string>
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>PrimaryLanguage</key>
