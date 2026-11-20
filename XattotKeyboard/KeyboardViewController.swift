@@ -31,7 +31,7 @@ let bottomY = y
 func bottomBtn(_ t:String, _ x:CGFloat, _ w:CGFloat, _ act:Selector){ let b=UIButton(type:.system); b.frame=CGRect(x:x,y:bottomY,width:w,height:48); b.setTitle(t, for:.normal); b.setTitleColor(.black, for:.normal); b.backgroundColor = .white; b.layer.cornerRadius = 5; b.titleLabel?.font = UIFont.boldSystemFont(ofSize:16); b.addTarget(self, action:act, for:.touchUpInside); view.addSubview(b) }
 bottomBtn(showNum ? "ABC" : "123",4,52,#selector(numTap))
 let langTitle = lang==0 ? "ЎЗ" : (lang==1 ? "ÖZ" : "اوز")
-bottomBtn("⌖",60,40,#selector(globeTap))
+let gb = UIButton(type: .system); gb.frame = CGRect(x: 60, y: bottomY, width: 40, height: 40); gb.setImage(UIImage(systemName: "globe"), for: .normal); gb.tintColor = .darkGray; gb.backgroundColor = .white; gb.layer.cornerRadius = 5; gb.addTarget(self, action: #selector(globeTap), for: .touchUpInside); view.addSubview(gb)
 bottomBtn("☺",104,40,#selector(emojiTap))
 let spaceW = view.bounds.width - 244
 let spaceLabel = " "
